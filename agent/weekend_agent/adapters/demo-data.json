@@ -1,0 +1,206 @@
+{
+  "routes": [
+    {
+      "id": "lakeside",
+      "theme": "peach",
+      "title": "在西湖边，慢半拍",
+      "subtitle": "把艺术、湖风和一顿热乎的火锅装进周末。",
+      "tags": [
+        "看展",
+        "火锅",
+        "散步"
+      ],
+      "stops": [
+        {
+          "name": "中国美术学院美术馆",
+          "category": "看展",
+          "address": "杭州 · 南山路 218 号",
+          "location": {
+            "lng": 120.1621,
+            "lat": 30.2455
+          },
+          "cost": 30,
+          "description": "从一场艺术漫游开始。具体展期、票价与预约要求请提前确认。",
+          "verification": "sample"
+        },
+        {
+          "name": "湖滨商圈 · 火锅时间",
+          "category": "火锅",
+          "address": "杭州 · 湖滨商圈，具体餐厅待选",
+          "location": {
+            "lng": 120.1643,
+            "lat": 30.253
+          },
+          "cost": 95,
+          "description": "边吃边聊，把一周的忙碌放一放。餐厅与排队情况待确认。",
+          "verification": "sample"
+        },
+        {
+          "name": "西湖湖滨步行街",
+          "category": "散步",
+          "address": "杭州 · 湖滨路沿线",
+          "location": {
+            "lng": 120.161,
+            "lat": 30.2552
+          },
+          "cost": 0,
+          "description": "沿着湖岸走一小段，找个喜欢的位置吹吹风。",
+          "verification": "sample"
+        }
+      ]
+    },
+    {
+      "id": "canal",
+      "theme": "sage",
+      "title": "运河边的松弛感",
+      "subtitle": "看手艺、逛老街，最后用一顿火锅收尾。",
+      "tags": [
+        "看展",
+        "火锅",
+        "老街"
+      ],
+      "stops": [
+        {
+          "name": "杭州工艺美术博物馆",
+          "category": "看展",
+          "address": "杭州 · 小河路 334 号",
+          "location": {
+            "lng": 120.138,
+            "lat": 30.3175
+          },
+          "cost": 0,
+          "description": "看看藏在日常器物里的巧思。开放与预约情况以官方为准。",
+          "verification": "sample"
+        },
+        {
+          "name": "桥西历史文化街区",
+          "category": "散步",
+          "address": "杭州 · 拱宸桥西侧",
+          "location": {
+            "lng": 120.139,
+            "lat": 30.319
+          },
+          "cost": 0,
+          "description": "沿运河慢慢逛，给偶遇的小店留一点时间。",
+          "verification": "sample"
+        },
+        {
+          "name": "拱宸桥商圈 · 火锅时间",
+          "category": "火锅",
+          "address": "杭州 · 拱宸桥商圈，具体餐厅待选",
+          "location": {
+            "lng": 120.144,
+            "lat": 30.321
+          },
+          "cost": 110,
+          "description": "在热气腾腾的锅边交换这一周的故事。具体选店待确认。",
+          "verification": "sample"
+        }
+      ]
+    },
+    {
+      "id": "creative",
+      "theme": "lilac",
+      "title": "去天目里，发会儿呆",
+      "subtitle": "留白的建筑、好看的展，还有不赶时间的聊天。",
+      "tags": [
+        "看展",
+        "火锅",
+        "建筑"
+      ],
+      "stops": [
+        {
+          "name": "天目里美术馆",
+          "category": "看展",
+          "address": "杭州 · 天目山路 398 号",
+          "location": {
+            "lng": 120.1067,
+            "lat": 30.2717
+          },
+          "cost": 60,
+          "description": "让建筑和艺术一起打开周末。此处不代表当前有可参观展览。",
+          "verification": "sample"
+        },
+        {
+          "name": "天目里 · 建筑漫游",
+          "category": "散步",
+          "address": "杭州 · 天目里园区",
+          "location": {
+            "lng": 120.1076,
+            "lat": 30.272
+          },
+          "cost": 0,
+          "description": "穿过连廊和小广场，拍几张随意的照片。",
+          "verification": "sample"
+        },
+        {
+          "name": "古墩路商圈 · 火锅时间",
+          "category": "火锅",
+          "address": "杭州 · 古墩路附近，具体餐厅待选",
+          "location": {
+            "lng": 120.1046,
+            "lat": 30.276
+          },
+          "cost": 90,
+          "description": "用一顿热乎晚餐结束这趟短短的城市出走。具体选店待确认。",
+          "verification": "sample"
+        }
+      ]
+    }
+  ],
+  "origins": [
+    {
+      "aliases": [
+        "武林广场",
+        "武林"
+      ],
+      "lng": 120.1645,
+      "lat": 30.2742
+    },
+    {
+      "aliases": [
+        "西湖文化广场"
+      ],
+      "lng": 120.1649,
+      "lat": 30.2829
+    },
+    {
+      "aliases": [
+        "杭州东站",
+        "火车东站"
+      ],
+      "lng": 120.2123,
+      "lat": 30.2913
+    },
+    {
+      "aliases": [
+        "拱宸桥",
+        "桥西"
+      ],
+      "lng": 120.142,
+      "lat": 30.3195
+    },
+    {
+      "aliases": [
+        "天目里"
+      ],
+      "lng": 120.1067,
+      "lat": 30.2717
+    },
+    {
+      "aliases": [
+        "龙翔桥",
+        "湖滨"
+      ],
+      "lng": 120.165,
+      "lat": 30.2544
+    },
+    {
+      "aliases": [
+        "西湖"
+      ],
+      "lng": 120.15,
+      "lat": 30.25
+    }
+  ]
+}

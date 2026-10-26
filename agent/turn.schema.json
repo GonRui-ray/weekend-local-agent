@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "conversation": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100
+    },
+    "input": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "action": {
+      "enum": [
+        "demo",
+        "invite"
+      ]
+    },
+    "plan_id": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "date": {
+          "type": "string"
+        },
+        "budget": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2000
+        },
+        "maxDistanceKm": {
+          "enum": [
+            1,
+            3,
+            5,
+            10
+          ]
+        },
+        "preferences": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "看展",
+              "火锅",
+              "咖啡",
+              "散步",
+              "逛街"
+            ]
+          },
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "location": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "availableFrom": {
+                "type": "string"
+              },
+              "availableTo": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "location",
+              "availableFrom",
+              "availableTo"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 6
+        },
+        "residentArea": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "maxCommuteMinutes": {
+          "enum": [
+            30,
+            45,
+            60
+          ]
+        },
+        "avoidPlaces": {
+          "type": "array",
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          }
+        }
+      },
+      "required": []
+    },
+    "home": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "city"
+      ],
+      "properties": {
+        "city": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "residentArea": {
+          "type": "string",
+          "maxLength": 60
+        }
+      }
+    }
+  },
+  "required": []
+}

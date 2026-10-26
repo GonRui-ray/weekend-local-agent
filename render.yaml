@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: weekend-local-agent
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: "7860"
+      - key: AMAP_KEY
+        sync: false
+      - key: TAVILY_KEY
+        sync: false
+      - key: MODEL_API_KEY
+        sync: false
+      - key: MODEL_BASE_URL
+        value: https://api-inference.modelscope.cn/v1
+      - key: MODEL_NAME
+        value: Qwen/Qwen3-32B

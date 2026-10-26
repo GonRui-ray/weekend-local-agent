@@ -1,0 +1,12 @@
+.env
+.env.*
+!**/.env.example
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+build/
+*.zip
+frontend/dist-pages/
+.github-auth/

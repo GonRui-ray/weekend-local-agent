@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.0",
+  "intent": "plan",
+  "message": "给你们排好了 3 条示例路线。共同空闲时间是 12:00–20:00，已给每个人预留往返。\n\n先看看「在西湖边，慢半拍」，也可以切换其他方案；喜欢哪条，我就帮你写邀请函。",
+  "next_step": {
+    "action": "choose_plan",
+    "options": [
+      {
+        "key": "1",
+        "text": "预算改成150元"
+      },
+      {
+        "key": "2",
+        "text": "不要火锅，想喝咖啡"
+      },
+      {
+        "key": "3",
+        "text": "生成邀请函"
+      }
+    ],
+    "result": {
+      "version": "1.0",
+      "request": {
+        "city": "杭州",
+        "date": "2026-10-31",
+        "budget": 180,
+        "maxDistanceKm": 3,
+        "preferences": [
+          "看展",
+          "火锅"
+        ],
+        "people": [
+          {
+            "name": "我",
+            "location": "武林广场",
+            "availableFrom": "12:00",
+            "availableTo": "20:00"
+          },
+          {
+            "name": "朋友",
+            "location": "西湖文化广场",
+            "availableFrom": "12:00",
+            "availableTo": "20:00"
+          }
+        ],
+        "audience": "resident",
+        "residentArea": "",
+        "maxCommuteMinutes": 45,
+        "avoidPlaces": [],
+        "commonWindow": {
+          "from": "12:00",
+          "to": "20:00"
+        }
+      },
+      "meta": {
+        "mode": "demo",
+        "generatedAt": "2026-10-26T07:12:50.389417+00:00",
+        "provider": "local-demo",
+        "dataNote": "主动选择的杭州产品样例，不是你的所在地推荐，也不是实时活动。",
+        "warnings": [],
+        "commonWindow": {
+          "from": "12:00",
+          "to": "20:00"
+        },
+        "activitySearch": {
+          "status": "not_configured",
+          "provider": null,
+          "checkedAt": null
+        },
+        "information": {
+          "channels": [],
+          "rejectedRecords": 0
+        }
+      },
+      "plans": [
+        {
+          "id": "lakeside",
+          "title": "在西湖边，慢半拍",
+          "subtitle": "把艺术、湖风和一顿热乎的火锅装进周末。",
+          "tags": [
+            "看展",
+            "火锅",
+            "散步"
+          ],
+          "theme": "peach",
+          "startTime": "12:25",
+          "endTime": "15:40",
+          "totalMinutes": 195,
+          "totalDistanceKm": 1.6,
+          "meetingPoint": "中国美术学院美术馆",
+          "budgetPerPerson": {
+            "total": 145,
+            "currency": "CNY",
+            "activities": 125,
+            "transport": 20,
+            "estimated": true
+          },
+          "arrivals": [
+            {
+              "name": "我",
+              "from": "武林广场",
+              "minutes": 20,
+              "returnMinutes": 20,
+              "estimated": true
+            },
+            {
+              "name": "朋友",
+              "from": "西湖文化广场",
+              "minutes": 25,
+              "returnMinutes": 20,
+              "estimated": true
+            }
+          ],
+          "stops": [
+            {
+              "order": 1,
+              "name": "中国美术学院美术馆",
+              "category": "看展",
+              "address": "杭州 · 南山路 218 号",
+              "location": {
+                "lng": 120.1621,
+                "lat": 30.2455
+              },
+              "startTime": "12:25",
+              "endTime": "13:30",
+              "durationMinutes": 65,
+              "costEstimate": 30,
+              "description": "从一场艺术漫游开始。具体展期、票价与预约要求请提前确认。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            },
+            {
+              "order": 2,
+              "name": "湖滨商圈 · 火锅时间",
+              "category": "火锅",
+              "address": "杭州 · 湖滨商圈，具体餐厅待选",
+              "location": {
+                "lng": 120.1643,
+                "lat": 30.253
+              },
+              "startTime": "13:45",
+              "endTime": "14:55",
+              "durationMinutes": 70,
+              "costEstimate": 95,
+              "description": "边吃边聊，把一周的忙碌放一放。餐厅与排队情况待确认。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            },
+            {
+              "order": 3,
+              "name": "西湖湖滨步行街",
+              "category": "散步",
+              "address": "杭州 · 湖滨路沿线",
+              "location": {
+                "lng": 120.161,
+                "lat": 30.2552
+              },
+              "startTime": "15:05",
+              "endTime": "15:40",
+              "durationMinutes": 35,
+              "costEstimate": 0,
+              "description": "沿着湖岸走一小段，找个喜欢的位置吹吹风。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            }
+          ],
+          "transfers": [
+            {
+              "from": 0,
+              "to": 1,
+              "distanceKm": 1.1,
+              "minutes": 15,
+              "mode": "步行",
+              "estimated": true
+            },
+            {
+              "from": 1,
+              "to": 2,
+              "distanceKm": 0.5,
+              "minutes": 10,
+              "mode": "步行",
+              "estimated": true
+            }
+          ],
+          "invitation": "这周末，一起拆个城市盲盒吧！\n\n📍 杭州 · 在西湖边，慢半拍\n🗓 2026-10-31 12:25–15:40\n👋 我、朋友\n\n12:25–13:30 中国美术学院美术馆\n杭州 · 南山路 218 号\n\n13:45–14:55 湖滨商圈 · 火锅时间\n杭州 · 湖滨商圈，具体餐厅待选\n\n15:05–15:40 西湖湖滨步行街\n杭州 · 湖滨路沿线\n\n💰 每人约 ¥145（含交通预留，消费为估算）\n🚶 路线内约 1.6 km，交通为估算\n📌 中国美术学院美术馆碰面，出发前预留好路上时间。\n\n这是一份示例路线。展期、营业时间、票价和预约要求还需确认；不代表已订票或订位。\n把周末留一点给我们，好不好？"
+        },
+        {
+          "id": "canal",
+          "title": "运河边的松弛感",
+          "subtitle": "看手艺、逛老街，最后用一顿火锅收尾。",
+          "tags": [
+            "看展",
+            "散步",
+            "火锅"
+          ],
+          "theme": "sage",
+          "startTime": "12:30",
+          "endTime": "15:35",
+          "totalMinutes": 185,
+          "totalDistanceKm": 1.0,
+          "meetingPoint": "杭州工艺美术博物馆",
+          "budgetPerPerson": {
+            "total": 130,
+            "currency": "CNY",
+            "activities": 110,
+            "transport": 20,
+            "estimated": true
+          },
+          "arrivals": [
+            {
+              "name": "我",
+              "from": "武林广场",
+              "minutes": 30,
+              "returnMinutes": 30,
+              "estimated": true
+            },
+            {
+              "name": "朋友",
+              "from": "西湖文化广场",
+              "minutes": 25,
+              "returnMinutes": 25,
+              "estimated": true
+            }
+          ],
+          "stops": [
+            {
+              "order": 1,
+              "name": "杭州工艺美术博物馆",
+              "category": "看展",
+              "address": "杭州 · 小河路 334 号",
+              "location": {
+                "lng": 120.138,
+                "lat": 30.3175
+              },
+              "startTime": "12:30",
+              "endTime": "13:35",
+              "durationMinutes": 65,
+              "costEstimate": 0,
+              "description": "看看藏在日常器物里的巧思。开放与预约情况以官方为准。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            },
+            {
+              "order": 2,
+              "name": "桥西历史文化街区",
+              "category": "散步",
+              "address": "杭州 · 拱宸桥西侧",
+              "location": {
+                "lng": 120.139,
+                "lat": 30.319
+              },
+              "startTime": "13:40",
+              "endTime": "14:15",
+              "durationMinutes": 35,
+              "costEstimate": 0,
+              "description": "沿运河慢慢逛，给偶遇的小店留一点时间。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            },
+            {
+              "order": 3,
+              "name": "拱宸桥商圈 · 火锅时间",
+              "category": "火锅",
+              "address": "杭州 · 拱宸桥商圈，具体餐厅待选",
+              "location": {
+                "lng": 120.144,
+                "lat": 30.321
+              },
+              "startTime": "14:25",
+              "endTime": "15:35",
+              "durationMinutes": 70,
+              "costEstimate": 110,
+              "description": "在热气腾腾的锅边交换这一周的故事。具体选店待确认。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            }
+          ],
+          "transfers": [
+            {
+              "from": 0,
+              "to": 1,
+              "distanceKm": 0.3,
+              "minutes": 5,
+              "mode": "步行",
+              "estimated": true
+            },
+            {
+              "from": 1,
+              "to": 2,
+              "distanceKm": 0.7,
+              "minutes": 10,
+              "mode": "步行",
+              "estimated": true
+            }
+          ],
+          "invitation": "这周末，一起拆个城市盲盒吧！\n\n📍 杭州 · 运河边的松弛感\n🗓 2026-10-31 12:30–15:35\n👋 我、朋友\n\n12:30–13:35 杭州工艺美术博物馆\n杭州 · 小河路 334 号\n\n13:40–14:15 桥西历史文化街区\n杭州 · 拱宸桥西侧\n\n14:25–15:35 拱宸桥商圈 · 火锅时间\n杭州 · 拱宸桥商圈，具体餐厅待选\n\n💰 每人约 ¥130（含交通预留，消费为估算）\n🚶 路线内约 1.0 km，交通为估算\n📌 杭州工艺美术博物馆碰面，出发前预留好路上时间。\n\n这是一份示例路线。展期、营业时间、票价和预约要求还需确认；不代表已订票或订位。\n把周末留一点给我们，好不好？"
+        },
+        {
+          "id": "creative",
+          "title": "去天目里，发会儿呆",
+          "subtitle": "留白的建筑、好看的展，还有不赶时间的聊天。",
+          "tags": [
+            "看展",
+            "散步",
+            "火锅"
+          ],
+          "theme": "lilac",
+          "startTime": "12:30",
+          "endTime": "15:35",
+          "totalMinutes": 185,
+          "totalDistanceKm": 0.8,
+          "meetingPoint": "天目里美术馆",
+          "budgetPerPerson": {
+            "total": 170,
+            "currency": "CNY",
+            "activities": 150,
+            "transport": 20,
+            "estimated": true
+          },
+          "arrivals": [
+            {
+              "name": "我",
+              "from": "武林广场",
+              "minutes": 30,
+              "returnMinutes": 30,
+              "estimated": true
+            },
+            {
+              "name": "朋友",
+              "from": "西湖文化广场",
+              "minutes": 30,
+              "returnMinutes": 30,
+              "estimated": true
+            }
+          ],
+          "stops": [
+            {
+              "order": 1,
+              "name": "天目里美术馆",
+              "category": "看展",
+              "address": "杭州 · 天目山路 398 号",
+              "location": {
+                "lng": 120.1067,
+                "lat": 30.2717
+              },
+              "startTime": "12:30",
+              "endTime": "13:35",
+              "durationMinutes": 65,
+              "costEstimate": 60,
+              "description": "让建筑和艺术一起打开周末。此处不代表当前有可参观展览。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            },
+            {
+              "order": 2,
+              "name": "天目里 · 建筑漫游",
+              "category": "散步",
+              "address": "杭州 · 天目里园区",
+              "location": {
+                "lng": 120.1076,
+                "lat": 30.272
+              },
+              "startTime": "13:40",
+              "endTime": "14:15",
+              "durationMinutes": 35,
+              "costEstimate": 0,
+              "description": "穿过连廊和小广场，拍几张随意的照片。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            },
+            {
+              "order": 3,
+              "name": "古墩路商圈 · 火锅时间",
+              "category": "火锅",
+              "address": "杭州 · 古墩路附近，具体餐厅待选",
+              "location": {
+                "lng": 120.1046,
+                "lat": 30.276
+              },
+              "startTime": "14:25",
+              "endTime": "15:35",
+              "durationMinutes": 70,
+              "costEstimate": 90,
+              "description": "用一顿热乎晚餐结束这趟短短的城市出走。具体选店待确认。",
+              "activitySources": [],
+              "source": {
+                "provider": "离线示例",
+                "url": null,
+                "checkedAt": null,
+                "verification": "sample"
+              }
+            }
+          ],
+          "transfers": [
+            {
+              "from": 0,
+              "to": 1,
+              "distanceKm": 0.1,
+              "minutes": 5,
+              "mode": "步行",
+              "estimated": true
+            },
+            {
+              "from": 1,
+              "to": 2,
+              "distanceKm": 0.7,
+              "minutes": 10,
+              "mode": "步行",
+              "estimated": true
+            }
+          ],
+          "invitation": "这周末，一起拆个城市盲盒吧！\n\n📍 杭州 · 去天目里，发会儿呆\n🗓 2026-10-31 12:30–15:35\n👋 我、朋友\n\n12:30–13:35 天目里美术馆\n杭州 · 天目山路 398 号\n\n13:40–14:15 天目里 · 建筑漫游\n杭州 · 天目里园区\n\n14:25–15:35 古墩路商圈 · 火锅时间\n杭州 · 古墩路附近，具体餐厅待选\n\n💰 每人约 ¥170（含交通预留，消费为估算）\n🚶 路线内约 0.8 km，交通为估算\n📌 天目里美术馆碰面，出发前预留好路上时间。\n\n这是一份示例路线。展期、营业时间、票价和预约要求还需确认；不代表已订票或订位。\n把周末留一点给我们，好不好？"
+        }
+      ]
+    },
+    "invitation": null,
+    "selected_plan_id": "lakeside",
+    "slots": {
+      "city": "杭州",
+      "date": "2026-10-31",
+      "budget": 180,
+      "maxDistanceKm": 3,
+      "preferences": [
+        "看展",
+        "火锅"
+      ],
+      "people": [
+        {
+          "name": "我",
+          "location": "武林广场",
+          "availableFrom": "12:00",
+          "availableTo": "20:00"
+        },
+        {
+          "name": "朋友",
+          "location": "西湖文化广场",
+          "availableFrom": "12:00",
+          "availableTo": "20:00"
+        }
+      ]
+    },
+    "notices": []
+  }
+}
