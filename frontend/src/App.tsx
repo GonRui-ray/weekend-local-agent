@@ -30,7 +30,7 @@ export default function App(){
       setConversation(response.conversation);setReply(response.data);
       const next=response.data.next_step;
       if(next.slots.city&&next.result?.meta.mode!=='demo')setHome({city:next.slots.city,residentArea:next.slots.residentArea||''});
-      if(next.result){setResult(next.result);if(next.selected_plan_id)setSelected(next.selected_plan_id);}else if(!next.slots.people){setResult(null);setSelected('');}
+      setResult(next.result);setSelected(next.selected_plan_id||'');
       setMessages(prev=>[...prev,{role:'assistant',text:response.data.message,reply:response.data}]);
       if(response.data.intent==='invite')setMenu('invitation');
     }catch(e){const message=e instanceof Error?e.message:'连接暂时中断，请稍后重试。';setError(message);setMessages(prev=>[...prev,{role:'assistant',text:message+'\n你的条件和此前的路线都还在，可以重试。'}]);}

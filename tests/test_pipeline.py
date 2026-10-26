@@ -106,6 +106,28 @@ class PipelineTests(unittest.IsolatedAsyncioTestCase):
         reply=await self.run_turn(input='帮我订票并付款')
         self.assertEqual(reply['intent'],'out_of_scope');self.assertIsNone(self.session.result)
 
+    async def test_total_budget_changes_actual_plan_allowance(self):
+        await self.run_turn(action='demo')
+        reply=await self.run_turn(input='总预算300元')
+        self.assertEqual(reply['intent'],'plan')
+        self.assertEqual(reply['next_step']['slots']['budget'],150)
+        self.assertTrue(all(p['budgetPerPerson']['total']*2<=300 for p in self.session.result['plans']))
+
+    async def test_ambiguous_times_pause_and_clear_previous_invitable_result(self):
+        await self.run_turn(action='demo')
+        reply=await self.run_turn(input='12:00到18:00，14:00到20:00')
+        self.assertEqual(reply['intent'],'clarify');self.assertIsNone(reply['next_step']['result'])
+        self.assertIn('对应到每个人',reply['message'])
+        self.assertEqual((await self.run_turn(action='invite'))['intent'],'clarify')
+        self.assertEqual((await self.run_turn(input='重新生成路线'))['intent'],'clarify')
+        reply=await self.run_turn(input='我12:00到20:00，朋友12:00到20:00')
+        self.assertEqual(reply['intent'],'plan')
+
+    async def test_total_without_people_requests_clarification(self):
+        reply=await self.run_turn(input='上海周六看展，总预算300元')
+        self.assertEqual(reply['intent'],'clarify');self.assertIn('同行人数',reply['message'])
+        self.assertNotIn('budget',reply['next_step']['slots'])
+
     async def test_map_outage_does_not_substitute_a_sample(self):
         self.pipeline.places.key='fake'
         reply=await self.run_turn(request=demo_request())
@@ -186,6 +208,49 @@ class PipelineTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(len(last['data']['next_step']['result']['plans']),1)
 
 class DomainTests(unittest.TestCase):
+    def test_total_budget_is_divided_across_confirmed_people(self):
+        req=demo_request()
+        self.assertEqual(extract('总预算300元',req)['slots']['budget'],150)
+        decision=extract('我们三个人，总预算300.01元',req)
+        self.assertEqual(decision['slots']['budget'],100)
+        self.assertEqual(len(decision['slots']['people']),3)
+        self.assertNotIn('budget',extract('总预算300元',{})['slots'])
+        self.assertIn('同行人数',extract('总预算300元',{})['message'])
+
+    def test_personal_and_shared_time_windows(self):
+        req=demo_request()
+        patch_=extract('我12:00到18:00有空，朋友14:00到20:00有空',req)['slots']
+        self.assertEqual(normalize({**req,**patch_})['commonWindow'],{'from':'14:00','to':'18:00'})
+        self.assertEqual(patch_['people'][0]['availableTo'],'18:00')
+        self.assertEqual(patch_['people'][1]['availableTo'],'20:00')
+        friend=extract('朋友14:00到20:00有空',req)['slots']['people']
+        self.assertEqual(friend[0],req['people'][0]);self.assertEqual(friend[1]['availableFrom'],'14:00')
+        shared=extract('都在13:00到19:00有空',req)['slots']['people']
+        self.assertTrue(all(p['availableFrom']=='13:00' and p['availableTo']=='19:00' for p in shared))
+
+    def test_named_windows_and_unassigned_windows(self):
+        req=demo_request();req['people'][1]['name']='小林'
+        people=extract('我12:00到18:00，小林14:00到20:00',req)['slots']['people']
+        self.assertEqual(people[1]['availableFrom'],'14:00')
+        decision=extract('12:00到18:00，14:00到20:00',req)
+        self.assertIn('对应到每个人',decision['message'])
+        self.assertTrue(all(p['availableFrom']==p['availableTo']=='' for p in decision['slots']['people']))
+
+    def test_negated_transactions_do_not_reject_planning(self):
+        for text in ('不需要订票，只想看展','不要帮我订票并付款，只排路线','不订票，想喝咖啡'):
+            with self.subTest(text=text):self.assertEqual(extract(text,demo_request())['intent'],'update')
+        self.assertEqual(extract('不需要订票，但帮我付款',demo_request())['intent'],'out_of_scope')
+
+    def test_specific_sunday_precedes_generic_weekend(self):
+        from datetime import date
+        for text in ('周日想看展，周末都可以','这周末想看展，周日出发','下周日想看展'):
+            with self.subTest(text=text):self.assertEqual(date.fromisoformat(extract(text,{})['slots']['date']).weekday(),6)
+
+    def test_full_group_count_is_checked(self):
+        for count in ('0','7','10','16','十','十二','二十','一百'):
+            with self.subTest(count=count):self.assertEqual(extract(f'我们{count}个人，周六出发',demo_request())['intent'],'out_of_scope')
+        self.assertEqual(len(extract('我们6个人',{})['slots']['people']),6)
+
     def test_bad_date_and_negative_budget(self):
         for patch_ in ({'date':'2027-02-30'},{'budget':-1},{'budget':True},{'budget':float('nan')}):
             with self.assertRaises(PlanError):normalize({**demo_request(),**patch_})

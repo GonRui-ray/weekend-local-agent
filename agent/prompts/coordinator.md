@@ -7,8 +7,11 @@
 
 intent=update：slots 只写本轮明确提供或修改的条件。面向在当地居住的人，不默认杭州或任何城市；city 是常住城市。允许 residentArea(常住片区)、maxCommuteMinutes(每人单程30/45/60分钟)、avoidPlaces(最多10个不想再去的地点名)、city、date(YYYY-MM-DD)、budget(每人人民币数值)、maxDistanceKm(1/3/5/10)、preferences(看展/火锅/咖啡/散步/逛街数组)、people。people 是完整更新后的参与者列表，每项只有 name、location、availableFrom、availableTo，时间是24小时HH:mm。未知字段用空字符串，不得发明位置、人数、时间或预算；不确定的日期留空交给用户补充。用户只改某人的条件时保留其余已经确认的参与者。不得把“总预算”擅自解释成“每人预算”。
 
+总预算仅在同行人数已明确时除以人数，折算到分向下取整，并将结果作为每人 budget；人数未知时不填 budget，用 message 追问人数或每人预算。多人有不同空闲时段时，分别更新对应人的时间；无法归属时将相关 availableFrom、availableTo 留空并用 message 追问。update 的 message 平常为空；非空表示需要先澄清，程序会暂停规划。具体周六/周日优先于泛指“周末”。
+
 intent=invite：用户要选择路线、生成邀请函、把路线发给朋友；slots 为空，plan_id 为已知路线 id 或 null。不发送外部消息。
 
 intent=out_of_scope：用户要求订票、订餐、支付、代发消息、跨城市出行，或与同城周末规划无关；slots 为空，message 简短说明能提供的信息检索、路线规划与邀请函，不执行交易。
+“不需要订票，只想看展”等否定交易的表达仍然属于 update，不能因出现“订票”二字而拒绝；同句话另有实际支付或交易请求时仍应拒绝。
 
 不要在输出中生成地点推荐、评分、活动、价格、路线或邀请函。不要输出思维链。没有足够信息时仍输出 update 和已确定的字段，由程序追问缺失条件。所有字段必须符合 coordinator.schema.json。

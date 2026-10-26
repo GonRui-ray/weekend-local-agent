@@ -70,8 +70,12 @@ class WeekendPipeline:
                 session.slots.pop("people", None)
                 session.result, session.selected, session.sample = None, None, False
             session.slots.update(patch)
+            if decision.get("message"):
+                session.result, session.selected = None, None
+                return self.reply(session, "clarify", decision["message"], action="provide_details", options=["编辑本地条件"], notices=notices)
             missing = missing_fields(session.slots)
             if missing:
+                session.result, session.selected = None, None
                 return self.reply(session, "clarify", "我会按你们日常居住和出发的位置安排附近周末，还需要："+"、".join(missing)+"。\n\n可以补充常住城市、各自附近的地铁站、12:00 到 20:00 这样的空闲时段，以及每人预算。不会默认你住在杭州。", action="provide_details", options=["编辑本地条件"], notices=notices)
             if not patch and payload.get("action") != "demo" and "request" not in payload and not re.search("重试|重新|再来|生成|安排|排路线", text):
                 return self.reply(session, "clarify", "可以继续修改预算、时间或偏好，也可以选择一条路线生成邀请函。复杂条件可以点「编辑条件」填写。", options=["重新生成路线", "预算改成150元", "生成邀请函"], notices=notices)
