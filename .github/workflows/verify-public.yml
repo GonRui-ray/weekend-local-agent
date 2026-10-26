@@ -1,0 +1,31 @@
+name: Verify public website
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Public HTTPS website to verify
+        required: true
+        default: https://gonrui-ray.github.io/weekend-local-agent/
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install verification dependencies
+        run: python -m pip install httpx==0.28.1 jsonschema==4.26.0
+      - name: Verify actual public HTTP responses and sample contract
+        env:
+          PUBLIC_SITE_URL: ${{ inputs.site_url }}
+        run: python scripts/verify_public_site.py --base-url "$PUBLIC_SITE_URL" --output build/evidence/public-http.json
+      - name: Upload verification result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-website-evidence
+          path: build/evidence/public-http.json
+          if-no-files-found: error

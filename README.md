@@ -1,12 +1,31 @@
 # 周末盲盒策划师 · 云端本地生活版
 
+[![Check and package Agent](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/ci.yml)
+[![Publish product showcase](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/pages.yml/badge.svg)](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/pages.yml)
+
 面向**住在当地的人**。用户确认常住城市和片区，提供每个人日常出发地、空闲时间、预算、兴趣和不想再去的地方。先整合活动与生活资讯，再生成 1–3 条附近路线与邀请函。目标为 2–3 条；可行方案不足时如实返回。
 
-延续参考 [教育 Agent](https://github.com/julikaalice-ux/edu-agent-learning-coach) 的 React + TypeScript 双场景、FastAPI SSE `/turn`、Gradio 云端入口及 JSON 校验结构。发布目标是一个公网 HTTPS 地址。此目录是待发布代码，**不代表已经上线**。
+**[打开公网交互体验](https://gonrui-ray.github.io/weekend-local-agent/)**，点击首页「先拆一个样例盲盒」，即可试选三套杭州样例路线、看详情、生成并复制邀请函。无需启动本地服务。
+
+**当前上线范围：GitHub Pages 样例交互。** Python 后端源码、模型与信息源适配、规划器均已提交；Python 云服务和真实活动数据尚未接通。样例不代表所在地推荐，也不代表当天存在活动。完整进展见 [联网验证报告](docs/online-verification.md)。
+
+| 项目材料 | 入口 |
+| --- | --- |
+| 完整源码与版本历史 | [GitHub 仓库](https://github.com/GonRui-ray/weekend-local-agent) |
+| 代码框架、模块职责与执行链路 | [架构与代码框架](docs/architecture.md) |
+| 公网结果、接口状态与实测截图 | [联网验证报告](docs/online-verification.md) · [HTTP 记录](docs/evidence/public-http.json) · [浏览器记录](docs/evidence/public-browser.json) |
+| HTTP / SSE 与固定 JSON | [接口契约](docs/api-contract.md) · [输入示例](example-resident-request.json) · [样例输出](example-response.json) |
+| 活动、小红书与本地生活资讯接入 | [信息接入与整合](信息接入与整合.md) |
+| 云端部署配置 | [GitHub / ModelScope / Render](GitHub部署.md) · [环境变量](agent/.env.example) |
+| 可下载源码和 ModelScope 包 | [GitHub Releases](https://github.com/GonRui-ray/weekend-local-agent/releases) |
+
+![公开体验页实测截图，活动为样例数据](docs/screenshots/public-home.png)
+
+延续参考 [教育 Agent](https://github.com/julikaalice-ux/edu-agent-learning-coach) 的 React + TypeScript 双场景、FastAPI SSE `/turn`、Gradio 云端入口及 JSON 校验结构。参考与素材说明见 [NOTICE.md](NOTICE.md)。
 
 ## GitHub 建设与展示
 
-完整源码将由 GitHub 管理。仓库提供自动测试、前端构建、ModelScope 产物、GitHub Pages 展示工作流与 Docker / Render 云端运行入口。参见 [GitHub部署.md](GitHub部署.md)。Pages 未配置云接口时明确使用产品展示模式，只有主动选择的静态样例；配置公开云接口地址后可运行完整本地活动 Agent。模型与检索凭证始终放在后端保密变量。
+完整源码已在 GitHub 管理，`main` 推送触发自动测试、前端构建、ModelScope 打包和 Pages 发布。仓库还提供 Docker / Render 云后端入口，参见 [GitHub部署.md](GitHub部署.md)。Pages 未配置云接口时使用样例体验模式；配置已部署的公开云接口地址后，可以调用后端执行真实检索。模型与检索凭证始终放在后端保密变量。
 
 ## 发布到 ModelScope
 
@@ -32,7 +51,7 @@ python3 scripts/build_space.py
 | `MODEL_NAME` | 默认 `Qwen/Qwen3-32B`，按账号实际可用 ID 调整 |
 | `HOST` / `PORT` | `0.0.0.0` / `7860` |
 
-真实演示至少需要**地图 + 一个有数据的信息源**。仅上传代码或填写空的活动模板不能得到真实活动。当前没有可用的平台发布授权或服务凭证，尚未发布或完成真实 API 联调。
+真实演示至少需要**地图 + 一个有数据的信息源**。仅上传代码或填写空的活动模板不能得到真实活动。GitHub Pages 已发布；目前没有可用的模型、地图、活动检索或供给凭证，因此 Python 云服务尚未发布，真实 API 联调尚未完成。
 
 部署后检查 `/health`（进程健康）、`/config`（Gradio）、`/ready`（所需服务是否配置）。`/ready` 在缺地图或缺活动来源时返回 503；配置检查不代表实际 API 已成功，真实状态按每轮来源卡显示。云平台健康检查应使用 `/health`，避免尚未配置凭证时反复重启。
 
@@ -44,7 +63,7 @@ python3 scripts/build_space.py
 
 只把城市、片区写入本次需求，不用设备精确坐标冒充住宅地址。每个人的日常出发地仍由本人填写，可用附近地铁站；以这些起点做集合与往返估算。支持中国大陆城市，地图服务查不到的位置会提示调整，不能保证每个城市每种偏好都有足够的活动。
 
-新增居民约束：单程通勤上限 30 / 45 / 60 分钟；排除最多 10 个去过且不想再去的地方；路线内部移动上限。默认不搜索一日游和游客集散点。更换城市时清空旧城市出发地与路线。普通检索缺配置、失败或无匹配时，保留当地条件并提示，**不自动切换杭州样例**。产品样例仅在设置页主动选择，始终标明不是所在地推荐。
+新增居民约束：单程通勤上限 30 / 45 / 60 分钟；排除最多 10 个去过且不想再去的地方；路线内部移动上限。默认不搜索一日游和游客集散点。更换城市时清空旧城市出发地与路线。普通检索缺配置、失败或无匹配时，保留当地条件并提示，**不自动切换杭州样例**。产品样例仅在首页或设置页由用户主动选择，始终标明不是所在地推荐。
 
 ## 活动与生活资讯摄入
 
@@ -113,3 +132,17 @@ npm run build
 试运行发现的待改进项：三套路线仍可能重复两站；单一咖啡偏好会被补入餐饮和散步；活动供给只有日级日期，未做具体场次或营业时段校验；通勤仍是直线距离估算；场馆别名匹配需结合 POI ID、地址和坐标。当前适合流程演示，真实活动供给、时段和云端链路仍待联调。
 
 目录依赖方向：`space → service → domain`，`adapters → domain`，`weekend_agent/server.py` 组装依赖。素材来源见 `NOTICE.md`。
+
+公网 HTTP 验证无需本地服务或付费 Key：
+
+```bash
+python scripts/verify_public_site.py --base-url https://gonrui-ray.github.io/weekend-local-agent/
+```
+
+制作可发布源码包与扁平 ModelScope 包（先构建前端并提交要打包的文件）：
+
+```bash
+python scripts/package_release.py --version v0.1.0-demo
+```
+
+产物写入 `build/releases/`，附 SHA-256 校验和。源码按 Git 跟踪列表打包，不包含 `.git`、本地凭证、虚拟环境或 `node_modules`。

@@ -1,0 +1,72 @@
+{
+  "checked_at": "2026-10-26T12:58:37.881Z",
+  "site_url": "https://gonrui-ray.github.io/weekend-local-agent/",
+  "tested_application_commit": "1cfc61d4d3ac88cf94d478a4d3894f8de8f2320c",
+  "passed": true,
+  "scope": "Deployed public sample UI; not a live activity-provider test.",
+  "checks": [
+    {
+      "name": "homepage",
+      "passed": true,
+      "detail": "HTTPS 首页 200；未预设城市；明确标注非实时样例。"
+    },
+    {
+      "name": "unsupported_live_request",
+      "passed": true,
+      "detail": "成都请求保留城市并提示尚未接通；没有自动替换为杭州推荐。"
+    },
+    {
+      "name": "sample_entry",
+      "passed": true,
+      "detail": "主动点击后载入 3 套杭州样例。"
+    },
+    {
+      "name": "routes",
+      "passed": true,
+      "detail": "三套路线可见，详情和历史示意日期标签可见。"
+    },
+    {
+      "name": "invitation",
+      "passed": true,
+      "detail": "为选中的「运河边的松弛感」生成邀请函并复制成功。"
+    },
+    {
+      "name": "json_export",
+      "passed": true,
+      "detail": "导出 JSON 可解析，包含三套样例路线。"
+    },
+    {
+      "name": "responsive",
+      "passed": true,
+      "detail": "1440px 桌面与 390px 手机流程无横向溢出。"
+    },
+    {
+      "name": "network_boundary",
+      "passed": true,
+      "detail": "样例交互未请求 /turn 或 /api/*，没有冒充实时搜索。"
+    },
+    {
+      "name": "javascript",
+      "passed": true,
+      "detail": "页面脚本错误为 0。"
+    }
+  ],
+  "errors": [],
+  "api_calls": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "screenshots": [
+    "public-home.png",
+    "public-routes.png",
+    "public-invitation.png",
+    "public-mobile.png"
+  ]
+}

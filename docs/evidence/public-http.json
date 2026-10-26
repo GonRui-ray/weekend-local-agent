@@ -1,0 +1,107 @@
+{
+  "checked_at": "2026-10-26T12:57:40.334945+00:00",
+  "site_url": "https://gonrui-ray.github.io/weekend-local-agent/",
+  "scope": "Public showcase HTTP, built assets and labelled sample; no live provider calls.",
+  "checks": [
+    {
+      "name": "homepage",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "url": "https://gonrui-ray.github.io/weekend-local-agent/"
+      }
+    },
+    {
+      "name": "entry_assets",
+      "passed": true,
+      "detail": {
+        "scripts": [
+          "/weekend-local-agent/assets/index-B-e4Y57W.js"
+        ],
+        "styles": [
+          "/weekend-local-agent/assets/index-Qysjx06Y.css"
+        ]
+      }
+    },
+    {
+      "name": "asset",
+      "passed": true,
+      "detail": {
+        "url": "https://gonrui-ray.github.io/weekend-local-agent/assets/index-B-e4Y57W.js",
+        "status": 200,
+        "content_type": "application/javascript; charset=utf-8",
+        "bytes": 180798
+      }
+    },
+    {
+      "name": "asset",
+      "passed": true,
+      "detail": {
+        "url": "https://gonrui-ray.github.io/weekend-local-agent/assets/index-Qysjx06Y.css",
+        "status": 200,
+        "content_type": "text/css; charset=utf-8",
+        "bytes": 34903
+      }
+    },
+    {
+      "name": "preview_label",
+      "passed": true,
+      "detail": "The deployed app labels the sample experience."
+    },
+    {
+      "name": "sample_entry",
+      "passed": true,
+      "detail": "Sample entry is available on the homepage."
+    },
+    {
+      "name": "sample_schema",
+      "passed": true,
+      "detail": {
+        "mode": "demo",
+        "date": "2026-10-31",
+        "plans": 3,
+        "note": "Sample date, places and prices are illustrative; not current activity recommendations."
+      }
+    }
+  ],
+  "resources": [
+    {
+      "url": "https://gonrui-ray.github.io/weekend-local-agent/assets/index-B-e4Y57W.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 180798
+    },
+    {
+      "url": "https://gonrui-ray.github.io/weekend-local-agent/assets/index-Qysjx06Y.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 34903
+    }
+  ],
+  "sample": {
+    "mode": "demo",
+    "date": "2026-10-31",
+    "plans": 3,
+    "note": "Sample date, places and prices are illustrative; not current activity recommendations."
+  },
+  "backend_observations": [
+    {
+      "path": "api/config",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "health",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "ready",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8"
+    }
+  ],
+  "live_backend_verified": false,
+  "live_activity_providers_verified": false,
+  "passed": true
+}
