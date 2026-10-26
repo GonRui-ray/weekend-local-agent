@@ -32,7 +32,7 @@ async function previewTurn(payload:Payload,onProgress:(p:Progress)=>void):Promis
   // Pages cannot run the Python coordinator or hold provider credentials.
   const slots=payload.request||payload.home||{};
   sampleReply=null;
-  return {conversation:'github-static-preview',data:{schema_version:'1.0',intent:'clarify',message:'目前是 GitHub Pages 产品展示。真实的当地活动检索接口尚未接入；你可以在设置页查看明确标注的产品样例。接通云端服务后，这里会按你的常住地生成路线。',next_step:{action:'provide_details',options:[],result:null,invitation:null,selected_plan_id:null,slots,notices:['当前页面不进行真实活动搜索，产品样例不代表你的所在地推荐。']}} satisfies Reply};
+  return {conversation:'github-static-preview',data:{schema_version:'1.0',intent:'clarify',message:'当前是交互体验版，真实活动检索尚未接通。你填写的常住地会保留；可以点「体验杭州示例」试选路线、查看详情、生成并复制邀请函。杭州样例只演示操作，不会当作你的所在地推荐。',next_step:{action:'provide_details',options:[{key:'1',text:'体验杭州示例'}],result:null,invitation:null,selected_plan_id:null,slots,notices:['当前页面不进行真实活动搜索，产品样例不代表你的所在地推荐。']}} satisfies Reply};
 }
 export async function turn(conversation:string|null,payload:Payload,onProgress:(p:Progress)=>void) {
   if(STATIC_PREVIEW)return previewTurn(payload,onProgress);

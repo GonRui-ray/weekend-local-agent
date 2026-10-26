@@ -9,4 +9,5 @@ __pycache__/
 build/
 *.zip
 frontend/dist-pages/
+frontend/dist-cloud/
 .github-auth/
