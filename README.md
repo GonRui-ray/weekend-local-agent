@@ -7,20 +7,20 @@
 
 **[打开公网交互体验](https://gonrui-ray.github.io/weekend-local-agent/)**，点击首页「先拆一个样例盲盒」，即可试选三套杭州样例路线、看详情、生成并复制邀请函。无需启动本地服务。
 
-**当前阶段：可交互的产品 Demo，暂不推进云端后端部署。** 已有 GitHub Pages 样例体验和完整前后端代码；真实活动数据、模型、地图与 Python 云服务尚未接通。现在先用 Demo 验证产品思路和交互流程。样例不代表所在地推荐，也不代表当天存在活动。完整工程记录见 [联网验证报告](docs/online-verification.md)。
+**体验说明：公开页面使用样例数据，真实活动 API 与云后端尚未接通。** 手机与桌面均可体验路线比较、时间线和邀请函。完整工程记录见 [联网验证报告](docs/online-verification.md)。
 
 | 现在能体验 | 尚未在公网接通 |
 | --- | --- |
 | 手机 / 桌面布局、城市填写、主动查看三套杭州样例、路线详情、邀请函生成与复制、JSON 导出 | 按当地条件实时搜活动、自动定位查城市、自然语言动态重排、真实供应商接口调用 |
 
-**后续方向：Demo 任务验证 → 单城真实数据与云后端 → 可执行性核验 → 小规模试点。** 先观察居民能否理解条件、比较方案并发起邀请；恢复实接后，优先用场馆 / 主办方公告或授权活动 feed 提供日期与来源，再结合地图和搜索。小红书等社区内容用于发现线索，不把搜索摘要当作已核实的展期、票价或库存。详见 [项目介绍与后续计划](docs/product-overview.md)。
+**产品路线图：居民场景验证 → 单城活动供给 → 真实规划链路 → 小规模试点 → 按质量扩城。** 围绕每阶段的目标、交付物和验收标准推进：先确定高频场景，建立带日期与来源的活动候选池，再完善场次、交通与多人约束，最后通过规划完成率、活动核验通过率和服务成本决定扩展范围。详见 [项目介绍与产品规划](docs/product-overview.md)。
 
-部署配置和验收脚本作为后续技术预案保留，见 [部署与联网验收说明](docs/live-launch.md)；当前不需要登录云平台或申请密钥。
+信息接入优先采用场馆 / 主办方公告与授权活动 feed，结合地图确认地点和交通；小红书等社区内容用于发现主题与偏好线索。接入设计见 [信息接入与整合](信息接入与整合.md)，工程方案见 [部署与联网验收说明](docs/live-launch.md)。
 
 | 项目材料 | 入口 |
 | --- | --- |
 | 完整源码与版本历史 | [GitHub 仓库](https://github.com/GonRui-ray/weekend-local-agent) |
-| 产品定位、Demo 边界与面试介绍 | [项目介绍与后续计划](docs/product-overview.md) |
+| 产品定位、信息接入与阶段路线图 | [项目介绍与产品规划](docs/product-overview.md) |
 | 代码框架、模块职责与执行链路 | [架构与代码框架](docs/architecture.md) |
 | 公网结果、接口状态与实测截图 | [联网验证报告](docs/online-verification.md) · [HTTP 记录](docs/evidence/public-http.json) · [浏览器记录](docs/evidence/public-browser.json) |
 | HTTP / SSE 与固定 JSON | [接口契约](docs/api-contract.md) · [输入示例](example-resident-request.json) · [样例输出](example-response.json) |
