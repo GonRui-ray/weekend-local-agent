@@ -57,11 +57,13 @@ weekend-local-agent/
 │   ├── plan.schema.json              完整路线
 │   ├── event-feed.schema.json        活动供给输入
 │   └── .env.example                  配置名称，不含密钥
-├── tests/                            48 项后端回归测试
+├── tests/                            59 项回归与接通验收测试（受控供应商）
 ├── scripts/
 │   ├── build_space.py                扁平 ModelScope 部署目录
 │   ├── package_release.py            源码 ZIP、部署 ZIP、SHA-256
 │   ├── verify_public_site.py         公网 HTTP 与样例契约复验
+│   ├── verify_live_backend.py        云后端真实检索、约束与邀请函验收
+│   ├── connect_cloud.py              验收成功后设置 Pages 公开后端地址
 │   └── publish_github.py             源码推送与 Pages 发布配置
 ├── .github/workflows/
 │   ├── ci.yml                        后端测试、前端构建、平台打包

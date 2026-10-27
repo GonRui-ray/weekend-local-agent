@@ -9,6 +9,10 @@
 
 **当前上线范围：GitHub Pages 样例交互。** Python 后端源码、模型与信息源适配、规划器均已提交；Python 云服务和真实活动数据尚未接通。样例不代表所在地推荐，也不代表当天存在活动。完整进展见 [联网验证报告](docs/online-verification.md)。
 
+**接通真实云服务：** [部署与联网验收说明](docs/live-launch.md)。用自己的 Render 账号填写高德 Web 服务和 Tavily 两项 Secret；模型可稍后配置。服务发布后可直接打开它的手机/网页界面，再验收并连接现有 Pages。
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/GonRui-ray/weekend-local-agent)
+
 | 项目材料 | 入口 |
 | --- | --- |
 | 完整源码与版本历史 | [GitHub 仓库](https://github.com/GonRui-ray/weekend-local-agent) |
@@ -17,6 +21,7 @@
 | HTTP / SSE 与固定 JSON | [接口契约](docs/api-contract.md) · [输入示例](example-resident-request.json) · [样例输出](example-response.json) |
 | 活动、小红书与本地生活资讯接入 | [信息接入与整合](信息接入与整合.md) |
 | 云端部署配置 | [GitHub / ModelScope / Render](GitHub部署.md) · [环境变量](agent/.env.example) |
+| 真实后端接通与验收 | [Render 创建入口、真实调用检查和 Pages 连接](docs/live-launch.md) |
 | 可下载源码和 ModelScope 包 | [GitHub Releases](https://github.com/GonRui-ray/weekend-local-agent/releases) |
 
 ![公开体验页实测截图，活动为样例数据](docs/screenshots/public-home.png)
@@ -127,7 +132,7 @@ npm ci
 npm run build
 ```
 
-48 项后端测试覆盖多轮、多城市适配（受控响应）、定位确认、居民通勤与排除、活动驱动候选与费用、来源去重与异城过滤、供给/搜索故障、JSON 校验和会话隔离。另覆盖总预算折算、多人独立时间、无法归属时追问、否定订票表达、具体周日优先和人数上限。桌面和 390px 手机浏览器已验证居住地确认、条件表单、上海供给驱动路线、来源卡、邀请函、城市切换与定位确认；无法明确时间归属时会清除当前可邀请路线。无横向溢出和页面脚本错误。浏览器数据同样使用受控响应。没有使用真实凭证消耗付费配额，不能以模拟验证替代发布后的服务联调。
+59 项后端与接通验收测试覆盖多轮、多城市适配（受控响应）、定位确认、居民通勤与排除、活动驱动候选与费用、来源去重与异城过滤、供给/搜索故障、JSON 校验和会话隔离。另覆盖总预算折算、多人独立时间、无法归属时追问、否定订票表达、具体周日优先、人数上限，以及联网验收拒绝样例/地图独立结果、日期记录覆盖和验收失败不修改 Pages。桌面和 390px 手机浏览器已验证居住地确认、条件表单、上海供给驱动路线、来源卡、邀请函、城市切换与定位确认；无法明确时间归属时会清除当前可邀请路线。无横向溢出和页面脚本错误。浏览器数据同样使用受控响应。没有使用真实凭证消耗付费配额，不能以模拟验证替代发布后的服务联调。
 
 试运行发现的待改进项：三套路线仍可能重复两站；单一咖啡偏好会被补入餐饮和散步；活动供给只有日级日期，未做具体场次或营业时段校验；通勤仍是直线距离估算；场馆别名匹配需结合 POI ID、地址和坐标。当前适合流程演示，真实活动供给、时段和云端链路仍待联调。
 

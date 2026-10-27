@@ -128,4 +128,4 @@ def build_app(*, pipeline=None, mount_gradio=True):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(build_app(),host=os.getenv("HOST","0.0.0.0"),port=int(os.getenv("PORT","7860")))
+    uvicorn.run(build_app(mount_gradio=os.getenv("MOUNT_GRADIO", "true").lower() != "false"),host=os.getenv("HOST","0.0.0.0"),port=int(os.getenv("PORT","7860")))

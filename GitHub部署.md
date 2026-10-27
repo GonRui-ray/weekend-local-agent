@@ -14,6 +14,8 @@ GitHub 保存完整源码、管理变更、执行检查和发布页面。GitHub 
 
 ## 接通完整云端 Agent
 
+可直接按 [真实联网部署与验收](docs/live-launch.md) 操作：Render 首次只需地图与搜索两项凭证；后端返回真实、有来源的路线并通过验收后，`scripts/connect_cloud.py` 才连接现有 Pages。部署、配置就绪和真实活动核实是不同阶段。
+
 方案一：在 ModelScope 创建 Gradio 创空间。从 Actions → Check and package Agent 的成功运行下载 `weekend-agent-modelscope`，将包内所有文件上传到空间根目录。入口为 `app.py`。配置地图、信息源、可选模型 Key。完整同源界面直接使用该空间的 `/ui-app/` 地址。
 
 方案二：在 Render 的 Blueprint 中连接本 GitHub 仓库，使用根目录 `render.yaml` 和 `Dockerfile`。配置保密变量后手动部署。此处只是可审核的部署定义，没有自动创建云账号或付费资源。免费实例可能休眠，首次访问要等待启动；数据 Key 的使用额度另由服务商计算。
