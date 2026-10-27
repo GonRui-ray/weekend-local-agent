@@ -2,6 +2,8 @@
 
 **结论：公网样例交互已上线，完整前后端源码已公开；真实活动检索链路尚未上线。**
 
+**2026-10-27 阶段说明：当前保留产品 Demo，暂不推进云端后端部署。** 下文保留 2026-10-26 的公网证据快照，末尾真实接通条件作为后续参考；近期先做 Demo 需求与交互验证，见 [项目介绍与后续计划](product-overview.md)。工程测试后来扩充至 59 项，已通过 [受控测试与构建](https://github.com/GonRui-ray/weekend-local-agent/actions/runs/40440507123)，不代表供应商真实接口接通。
+
 - 体验地址：[周末盲盒](https://gonrui-ray.github.io/weekend-local-agent/)。
 - 源码：[GonRui-ray/weekend-local-agent](https://github.com/GonRui-ray/weekend-local-agent)。
 - 本次公网 HTTP 验证：2026-10-26 20:57（北京时间）。
@@ -92,7 +94,7 @@ python scripts/verify_public_site.py \
 
 手动交互复验：打开网址 → 确认没有默认城市 → 填自己的城市 → 检查未配置提示 → 主动选择杭州样例 → 切换路线 → 生成并复制邀请函 → 导出 JSON → 手机宽度重试。
 
-## 六、接通真实活动的完成条件
+## 六、后续接通真实活动的完成条件（当前暂缓）
 
 1. 部署 Python 单实例云服务，确认 `/health` 可访问。
 2. 设置高德 Key，以及 Tavily Key 或有有效记录的活动 feed。模型是可选项；Key 放云后端 Secrets。

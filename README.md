@@ -1,27 +1,32 @@
-# 周末盲盒策划师 · 云端本地生活版
+# 周末盲盒策划师 · 本地生活 Agent Demo
 
 [![Check and package Agent](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/ci.yml)
 [![Publish product showcase](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/pages.yml/badge.svg)](https://github.com/GonRui-ray/weekend-local-agent/actions/workflows/pages.yml)
 
-面向**住在当地的人**。用户确认常住城市和片区，提供每个人日常出发地、空闲时间、预算、兴趣和不想再去的地方。先整合活动与生活资讯，再生成 1–3 条附近路线与邀请函。目标为 2–3 条；可行方案不足时如实返回。
+面向**住在当地的人**的 AI 产品 Demo。目标是根据常住城市、每个人的日常出发地、空闲时间、预算和兴趣，整合活动与生活资讯，生成附近路线与邀请函。设计目标为 2–3 条；可行方案不足时如实返回。
 
 **[打开公网交互体验](https://gonrui-ray.github.io/weekend-local-agent/)**，点击首页「先拆一个样例盲盒」，即可试选三套杭州样例路线、看详情、生成并复制邀请函。无需启动本地服务。
 
-**当前上线范围：GitHub Pages 样例交互。** Python 后端源码、模型与信息源适配、规划器均已提交；Python 云服务和真实活动数据尚未接通。样例不代表所在地推荐，也不代表当天存在活动。完整进展见 [联网验证报告](docs/online-verification.md)。
+**当前阶段：可交互的产品 Demo，暂不推进云端后端部署。** 已有 GitHub Pages 样例体验和完整前后端代码；真实活动数据、模型、地图与 Python 云服务尚未接通。现在先用 Demo 验证产品思路和交互流程。样例不代表所在地推荐，也不代表当天存在活动。完整工程记录见 [联网验证报告](docs/online-verification.md)。
 
-**接通真实云服务：** [部署与联网验收说明](docs/live-launch.md)。用自己的 Render 账号填写高德 Web 服务和 Tavily 两项 Secret；模型可稍后配置。服务发布后可直接打开它的手机/网页界面，再验收并连接现有 Pages。
+| 现在能体验 | 尚未在公网接通 |
+| --- | --- |
+| 手机 / 桌面布局、城市填写、主动查看三套杭州样例、路线详情、邀请函生成与复制、JSON 导出 | 按当地条件实时搜活动、自动定位查城市、自然语言动态重排、真实供应商接口调用 |
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/GonRui-ray/weekend-local-agent)
+**后续方向：Demo 任务验证 → 单城真实数据与云后端 → 可执行性核验 → 小规模试点。** 先观察居民能否理解条件、比较方案并发起邀请；恢复实接后，优先用场馆 / 主办方公告或授权活动 feed 提供日期与来源，再结合地图和搜索。小红书等社区内容用于发现线索，不把搜索摘要当作已核实的展期、票价或库存。详见 [项目介绍与后续计划](docs/product-overview.md)。
+
+部署配置和验收脚本作为后续技术预案保留，见 [部署与联网验收说明](docs/live-launch.md)；当前不需要登录云平台或申请密钥。
 
 | 项目材料 | 入口 |
 | --- | --- |
 | 完整源码与版本历史 | [GitHub 仓库](https://github.com/GonRui-ray/weekend-local-agent) |
+| 产品定位、Demo 边界与面试介绍 | [项目介绍与后续计划](docs/product-overview.md) |
 | 代码框架、模块职责与执行链路 | [架构与代码框架](docs/architecture.md) |
 | 公网结果、接口状态与实测截图 | [联网验证报告](docs/online-verification.md) · [HTTP 记录](docs/evidence/public-http.json) · [浏览器记录](docs/evidence/public-browser.json) |
 | HTTP / SSE 与固定 JSON | [接口契约](docs/api-contract.md) · [输入示例](example-resident-request.json) · [样例输出](example-response.json) |
 | 活动、小红书与本地生活资讯接入 | [信息接入与整合](信息接入与整合.md) |
-| 云端部署配置 | [GitHub / ModelScope / Render](GitHub部署.md) · [环境变量](agent/.env.example) |
-| 真实后端接通与验收 | [Render 创建入口、真实调用检查和 Pages 连接](docs/live-launch.md) |
+| 后续部署技术预案（暂不执行） | [GitHub / ModelScope / Render](GitHub部署.md) · [环境变量](agent/.env.example) |
+| 后续真实接口验收方案 | [真实调用检查和 Pages 连接](docs/live-launch.md) |
 | 可下载源码和 ModelScope 包 | [GitHub Releases](https://github.com/GonRui-ray/weekend-local-agent/releases) |
 
 ![公开体验页实测截图，活动为样例数据](docs/screenshots/public-home.png)
@@ -32,7 +37,9 @@
 
 完整源码已在 GitHub 管理，`main` 推送触发自动测试、前端构建、ModelScope 打包和 Pages 发布。仓库还提供 Docker / Render 云后端入口，参见 [GitHub部署.md](GitHub部署.md)。Pages 未配置云接口时使用样例体验模式；配置已部署的公开云接口地址后，可以调用后端执行真实检索。模型与检索凭证始终放在后端保密变量。
 
-## 发布到 ModelScope
+## 后续部署参考：ModelScope（暂不执行）
+
+以下保留技术配置说明，供以后恢复真实后端接入时使用；不代表已发布或正在部署。
 
 `weekend-agent-modelscope.zip` 是扁平上传包；解压后 `app.py` 在根目录。源码中也可运行：
 
@@ -64,6 +71,8 @@ python3 scripts/build_space.py
 
 ## 从所在地到常住地
 
+以下为前后端代码的设计与实现说明，涉及地图、模型、检索和实时排程的能力仍待接通；当前公网功能以上表为准。
+
 首页不预设任何城市。用户手动填写常住城市和片区，或点击「用当前位置」授权浏览器定位。后端通过高德将浏览器 GPS 坐标转换为地图坐标，再识别城市、区，**仍需用户确认是否为常住地**。不会用云服务器 IP 识别用户位置。
 
 只把城市、片区写入本次需求，不用设备精确坐标冒充住宅地址。每个人的日常出发地仍由本人填写，可用附近地铁站；以这些起点做集合与往返估算。支持中国大陆城市，地图服务查不到的位置会提示调整，不能保证每个城市每种偏好都有足够的活动。
@@ -82,7 +91,7 @@ python3 scripts/build_space.py
 
 有来源信息会影响候选与排序。只有 POI 数据时，如实展示「周边地点路线」，不称为已查到本周末活动。每个资讯渠道展示取得匹配、无匹配、未配置或故障状态。
 
-小红书 / 大众点评 / 美团 / 大麦等平台当前使用的是**公开搜索发现**。未宣称已获得它们的完整内容 API、评分或实时库存。拿到商业授权或现有数据服务后，可经统一供给网关接入，不需要重写路线器。未实现绕过登录、反爬或搬运完整笔记。平台官方、商家原始活动公告适合做事实来源；社区内容适合做偏好与发现线索。
+针对小红书 / 大众点评 / 美团 / 大麦等平台，后端预留的是**公开搜索发现**，公网 Demo 未实时拉取这些平台的数据。尚未获得它们的完整内容 API、评分或实时库存。拿到商业授权或现有数据服务后，可经统一供给网关接入，不需要重写路线器。未实现绕过登录、反爬或搬运完整笔记。平台官方、商家原始活动公告适合做事实来源；社区内容适合做偏好与发现线索。
 
 ## 固定输入输出与执行过程
 

@@ -2,6 +2,8 @@
 
 GitHub 保存完整源码、管理变更、执行检查和发布页面。GitHub Pages 提供公网 HTTPS 前端；Python Agent、外部检索和凭证留在云后端运行。
 
+**当前阶段：已有公开样例 Demo，暂不推进 Python 云后端部署。** 以下仓库创建与部署说明是技术参考，不是当前待办。近期重点与后续阶段见 [项目介绍与后续计划](docs/product-overview.md)。
+
 ## 创建 GitHub 仓库
 
 当前机器登录 `gh auth login --web --scopes workflow` 后，在仓库根目录运行 `python3 scripts/publish_github.py`，将创建当前账号下的公开 `weekend-local-agent` 仓库并推送、启用 Pages 工作流。私有源码使用 `--private`，不自动启用 Pages。脚本要求 main 分支已提交且工作区干净，不会覆盖其他 origin，不接受明文 Token。
@@ -12,9 +14,9 @@ GitHub 保存完整源码、管理变更、执行检查和发布页面。GitHub 
 
 没有云后端地址时，页面明确显示「交互体验版 · 样例数据，非实时活动」。首页可直接点「先拆一个样例盲盒」，主动载入杭州产品样例，试选路线、看详情、生成并复制邀请函。也可填写常住地；静态页面不会假装搜索了真实活动，历史样例日期仅作示意，不会当作其他城市的所在地推荐。
 
-## 接通完整云端 Agent
+## 后续参考：接通完整云端 Agent（暂不执行）
 
-可直接按 [真实联网部署与验收](docs/live-launch.md) 操作：Render 首次只需地图与搜索两项凭证；后端返回真实、有来源的路线并通过验收后，`scripts/connect_cloud.py` 才连接现有 Pages。部署、配置就绪和真实活动核实是不同阶段。
+以后恢复实接时，可按 [真实联网部署与验收](docs/live-launch.md) 操作：后端返回真实、有来源的路线并通过验收后，`scripts/connect_cloud.py` 才连接现有 Pages。部署、配置就绪和真实活动核实是不同阶段。当前不执行这些步骤。
 
 方案一：在 ModelScope 创建 Gradio 创空间。从 Actions → Check and package Agent 的成功运行下载 `weekend-agent-modelscope`，将包内所有文件上传到空间根目录。入口为 `app.py`。配置地图、信息源、可选模型 Key。完整同源界面直接使用该空间的 `/ui-app/` 地址。
 
